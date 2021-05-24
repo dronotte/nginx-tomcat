@@ -1,4 +1,9 @@
 ---
+- hosts: common
+  remote_user: root
+  roles:
+  - common
+
 - hosts: docker
   remote_user: root
   roles:
