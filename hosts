@@ -14,4 +14,9 @@ all:
          hosts:
             web-server.vm:
       tomcat:
+         hosts:
             app-server.vm:
+      common:
+         hosts:
+            app-server.vm:
+            web-server.vm
