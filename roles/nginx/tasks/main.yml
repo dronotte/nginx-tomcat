@@ -13,5 +13,5 @@
       - 443:443
  
 - name: Copy nginx.conf
-   template: src=nginx.conf.v1 dest=/opt/nginx.conf
-   notify: restart nginx
+    template: src=nginx.conf.v1 dest=/opt/nginx.conf
+    notify: restart nginx
