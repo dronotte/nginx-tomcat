@@ -1,13 +1,13 @@
 ---
-- hosts: web
-  remote_user: root
-  roles:
-  - nginx
-
 - hosts: docker
   remote_user: root
   roles:
   - docker
+  
+- hosts: web
+  remote_user: root
+  roles:
+  - nginx
 
 - hosts: tomcat
   remote_user: root
