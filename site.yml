@@ -1,0 +1,15 @@
+---
+- hosts: web
+  remote_user: root
+  roles:
+  - nginx
+
+- hosts: docker
+  remote_user: root
+  roles:
+  - docker
+
+- hosts: tomcat
+  remote_user: root
+  roles:
+  - tomcat

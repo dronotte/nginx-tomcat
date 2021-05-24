@@ -1,0 +1,17 @@
+all:
+   hosts:
+      web-server.vm:
+         ansible_host: 192.168.100.104
+         ansible_user: root
+      app-server.vm:
+         ansible_host: 192.168.100.105
+         ansible_user: root
+   children:
+      docker:
+         hosts:
+            web-server.vm:
+      web:
+         hosts:
+            web-server.vm:
+      tomcat:
+            app-server.vm:

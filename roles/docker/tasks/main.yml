@@ -1,0 +1,49 @@
+---
+- name: Check if docker is installed
+  shell: docker --version
+  register: docker_version_cmd
+  changed_when: false
+  ignore_errors: true
+
+- name: Install yum-utils
+  yum: name=yum-utils state=present
+  when: docker_version_cmd is failed
+
+- name: Remove repository docker
+  yum_repository:
+    name: docker
+    state: absent
+  notify: yum-clean-metadata
+  when: docker_version_cmd is failed
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+  become: yes
+  when: docker_version_cmd is failed
+
+- name: Enable Docker Edge repo
+  ini_file:
+    dest: /etc/yum.repos.d/docker-ce.repo
+    section: 'docker-ce-edge'
+    option: enabled
+    value: 0
+  become: yes
+  when: docker_version_cmd is failed
+
+
+- name: Install docker-engine
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+  when: docker_version_cmd is failed
+
+- name: Enable and Start docker
+  service: name=docker state=started enabled=yes
+  when: docker_version_cmd is failed

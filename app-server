@@ -1,0 +1,14 @@
+yum install tomcat wget
+Скачать варник дженкинса
+https://get.jenkins.io/war-stable/2.277.4/jenkins.war
+Положить его в apache-tomcat /usr/share/tomcat/webapps
+systemctl stop&disable firewalld
+выключим селинух
+
+Создадим домашнюю директорию для дженкинса
+mkdir /usr/share/tomcat/.jenkins
+
+systemctl enable tomcat
+systemctl start tomcat
+
+

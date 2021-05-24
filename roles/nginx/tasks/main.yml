@@ -1,0 +1,17 @@
+---
+- name: Create nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: nginx
+    state: present
+    volumes:
+      - /opt/certs:/etc/letsencrypt
+      - /opt/nginx:/etc/nginx
+      - /etc/hosts:/etc/hosts
+    exposed_ports:
+      - 80:80
+      - 443:443
+ 
+   - name: Copy nginx.conf
+     template: src=nginx.conf.v1 dest=/opt/nginx.conf
+     notify: restart nginx

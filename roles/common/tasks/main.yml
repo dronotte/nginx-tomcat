@@ -1,0 +1,32 @@
+---
+- name: Install epel-release
+  yum: name=epel-release state=present
+  
+- name: Install wget
+  yum: name=wget state=present
+
+- name: Install Iptables
+  yum: name=iptables state=present
+
+- name: Install Iptables-services
+  yum: name=iptables-services state=present
+
+#- name: Setup Iptables rules
+#  template: src=iptables.j2 dest=/etc/sysconfig/iptables
+#  notify: restart iptables
+
+- name: Start Iptables
+  service: name=iptables state=started enabled=yes
+
+- name: Copy authorized keys
+  template: src=authorized_keys dest=/root/.ssh/authorized_keys
+  notify: restart sshd
+
+- name: Disable SELinux
+  ansible.posix.selinux:
+    state: disabled
+
+- name: Generate /etc/hosts file
+  template:
+    src=hosts.j2
+    dest=/etc/hosts
