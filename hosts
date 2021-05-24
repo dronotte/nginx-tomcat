@@ -19,4 +19,4 @@ all:
       common:
          hosts:
             app-server.vm:
-            web-server.vm
+            web-server.vm:
