@@ -11,6 +11,8 @@ all:
       docker:
          hosts:
             web-server.vm:
+               ansible_python_interpreter: /usr/bin/python3
+
       web:
          hosts:
             web-server.vm:
