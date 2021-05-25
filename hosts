@@ -3,6 +3,7 @@ all:
       web-server.vm:
          ansible_host: 192.168.100.104
          ansible_user: root
+#         ansible_python_interpreter: /usr/bin/python3
       app-server.vm:
          ansible_host: 192.168.100.105
          ansible_user: root
