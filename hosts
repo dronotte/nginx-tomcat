@@ -8,11 +8,10 @@ all:
          ansible_host: 192.168.100.105
          ansible_user: root
    children:
-      docker:
-         hosts:
-            web-server.vm:
-               ansible_python_interpreter: /usr/bin/python3
-
+#      docker:
+#         hosts:
+#            web-server.vm:
+#               ansible_python_interpreter: /usr/bin/python3
       web:
          hosts:
             web-server.vm:

@@ -1,17 +1,10 @@
 ---
-- name: Create nginx container
-  community.docker.docker_container:
-    name: nginx
-    image: nginx
-    state: present
-    volumes:
-      - /opt/certs:/etc/letsencrypt
-      - /opt/nginx:/etc/nginx
-      - /etc/hosts:/etc/hosts
-    exposed_ports:
-      - 80:80
-      - 443:443
+   - name: Install Nginx
+     yum: name=nginx state=present
 
-- name: Copy nginx.conf
-  template: src=nginx.conf.v1 dest=/opt/nginx.conf
-  notify: restart nginx
+   - name: Start Nginx
+     service: name=nginx state=started enabled=yes
+
+   - name: Copy nginx.conf
+     template: src=nginx.conf.v1 dest=/etc/nginx/nginx.conf
+     notify: restart nginx

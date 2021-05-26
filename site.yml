@@ -4,11 +4,11 @@
   roles:
   - common
 
-- hosts: docker
-  remote_user: root
-  roles:
-  - docker
-  
+#- hosts: docker
+#  remote_user: root
+#  roles:
+#  - docker
+
 - hosts: web
   remote_user: root
   roles:

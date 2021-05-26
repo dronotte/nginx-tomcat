@@ -5,6 +5,6 @@
    - name: Start Tomcat
      service: name=tomcat state=started enabled=yes
 
-   - name: Copy Jenkins .war
+   - name: Copy Jenkins.war
      template: src=jenkins.war.2.277.4 dest=/usr/share/tomcat/webapps/jenkins.war
      notify: restart tomcat
