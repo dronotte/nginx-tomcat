@@ -6,5 +6,28 @@
      service: name=tomcat state=started enabled=yes
 
    - name: Copy Jenkins.war
-     template: src=jenkins.war.2.277.4 dest=/usr/share/tomcat/webapps/jenkins.war
+     copy:
+       src: /etc/ansible/roles/tomcat/templates/jenkins.war.2.277.4
+       dest: /usr/share/tomcat/webapps/jenkins.war
+       owner: tomcat
+       group: tomcat
+       mode: 0770
+     notify: restart tomcat
+
+   - name: Copy tomcat.conf
+     copy:
+       src: /etc/ansible/roles/tomcat/templates/tomcat.conf
+       dest: /usr/share/tomcat/conf/tomcat.conf
+       owner: tomcat
+       group: tomcat
+       mode: 0770
+     notify: restart tomcat
+
+   - name: Copy server.xml
+     copy:
+       src: /etc/ansible/roles/tomcat/templates/server.xml
+       dest: /usr/share/tomcat/conf/server.xml
+       owner: tomcat
+       group: tomcat
+       mode: 0770
      notify: restart tomcat

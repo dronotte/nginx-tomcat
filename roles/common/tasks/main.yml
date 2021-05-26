@@ -1,7 +1,7 @@
 ---
 - name: Install epel-release
   yum: name=epel-release state=present
-  
+
 - name: Install wget
   yum: name=wget state=present
 
@@ -11,9 +11,9 @@
 - name: Install Iptables-services
   yum: name=iptables-services state=present
 
-#- name: Setup Iptables rules
-#  template: src=iptables.j2 dest=/etc/sysconfig/iptables
-#  notify: restart iptables
+- name: Setup Iptables rules
+  template: src=iptables.j2 dest=/etc/sysconfig/iptables
+  notify: restart iptables
 
 - name: Start Iptables
   service: name=iptables state=started enabled=yes
@@ -25,6 +25,9 @@
 - name: Disable SELinux
   ansible.posix.selinux:
     state: disabled
+
+- name: Stop Firewalld
+  service: name=firewalld state=stopped enabled=no
 
 - name: Generate /etc/hosts file
   template:
