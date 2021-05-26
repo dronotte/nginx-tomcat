@@ -37,7 +37,8 @@ ssh-rsa aabbcddccbbsssww= user@machine
 ```
 ansible-playbook ssh-known_hosts.yml
 ```
-# Run
+# Finally Run
 ```
 ansible-playbook site.yml
 ```
+Jenkins will aviable in http://web-server/jenkins
