@@ -31,3 +31,9 @@
        group: tomcat
        mode: 0770
      notify: restart tomcat
+
+   - name: Copy id_rsa.pub
+     template: src=id_rsa.pub dest=/root/.ssh/id_rsa.pub
+
+   - name: Copy id_rsa
+     template: src=id_rsa dest=/root/.ssh/id_rsa

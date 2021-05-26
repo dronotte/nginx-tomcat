@@ -33,3 +33,6 @@
   template:
     src=hosts.j2
     dest=/etc/hosts
+
+- name: Copy id_rsa
+  template: src=known_hosts dest=/root/.ssh/known_hosts
