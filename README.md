@@ -15,6 +15,10 @@ http://ftp.nsc.ru/pub/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.i
 # Copy ssh-key on VM's
 Create roles/common/templates/authorized_keys with your key
 
+# Add known_hosts for every host in inventory
+```
+ansible-playbook ssh-known_hosts.yml
+```
 # Run
 ```
 ansible-playbook site.yml

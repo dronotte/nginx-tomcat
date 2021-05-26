@@ -17,3 +17,9 @@ all:
          hosts:
             app-server.vm:
             web-server.vm:
+      backup_client:
+         hosts:
+            web-server.vm:
+      backup_server:
+         hosts:
+            app-server.vm:

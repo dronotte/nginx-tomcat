@@ -1,39 +1,15 @@
 ---
-   - name: Install tomcat
-     yum: name=tomcat state=present
+   - name: Create backup directory
+     file:
+       path: /data/backup/
+       state: directory
 
-   - name: Start Tomcat
-     service: name=tomcat state=started enabled=yes
+   - name: Copy backup script
+     template: src=backup.sh dest=/root/backup.sh
 
-   - name: Copy Jenkins.war
-     copy:
-       src: /etc/ansible/roles/tomcat/templates/jenkins.war.2.277.4
-       dest: /usr/share/tomcat/webapps/jenkins.war
-       owner: tomcat
-       group: tomcat
-       mode: 0770
-     notify: restart tomcat
-
-   - name: Copy tomcat.conf
-     copy:
-       src: /etc/ansible/roles/tomcat/templates/tomcat.conf
-       dest: /usr/share/tomcat/conf/tomcat.conf
-       owner: tomcat
-       group: tomcat
-       mode: 0770
-     notify: restart tomcat
-
-   - name: Copy server.xml
-     copy:
-       src: /etc/ansible/roles/tomcat/templates/server.xml
-       dest: /usr/share/tomcat/conf/server.xml
-       owner: tomcat
-       group: tomcat
-       mode: 0770
-     notify: restart tomcat
-
-   - name: Copy id_rsa.pub
-     template: src=id_rsa.pub dest=/root/.ssh/id_rsa.pub
-
-   - name: Copy id_rsa
-     template: src=id_rsa dest=/root/.ssh/id_rsa
+   - name: Add cron job for backup
+     ansible.builtin.cron:
+     name: "create backup"
+     minute: "0"
+     hour: "2"
+     job: "/root/backup.sh"

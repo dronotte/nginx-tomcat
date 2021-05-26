@@ -33,7 +33,13 @@
      notify: restart tomcat
 
    - name: Copy id_rsa.pub
-     template: src=id_rsa.pub dest=/root/.ssh/id_rsa.pub
+     copy:
+       src: ../templates/id_rsa.pub
+       dest: /root/.ssh/id_rsa.pub
+       mode: 0400
 
    - name: Copy id_rsa
-     template: src=id_rsa dest=/root/.ssh/id_rsa
+     copy:
+       src: ../templates/id_rsa
+       dest: /root/.ssh/id_rsa
+       mode: 0400
