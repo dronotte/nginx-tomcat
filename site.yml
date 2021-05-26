@@ -13,3 +13,8 @@
   remote_user: root
   roles:
   - tomcat
+
+- hosts: backup_server
+  remote_user: root
+  roles:
+  - backup_server

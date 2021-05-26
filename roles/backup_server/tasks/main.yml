@@ -1,4 +1,16 @@
 ---
+   - name: Copy id_rsa.pub
+     copy:
+       src: ../templates/id_rsa.pub
+       dest: /root/.ssh/id_rsa.pub
+       mode: 0400
+
+   - name: Copy id_rsa
+     copy:
+       src: ../templates/id_rsa
+       dest: /root/.ssh/id_rsa
+       mode: 0400
+
    - name: Create backup directory
      file:
        path: /data/backup/
@@ -9,7 +21,7 @@
 
    - name: Add cron job for backup
      ansible.builtin.cron:
-     name: "create backup"
-     minute: "0"
-     hour: "2"
-     job: "/root/backup.sh"
+       name: "create backup"
+       minute: "0"
+       hour: "2"
+       job: "/root/backup.sh"
