@@ -1,4 +1,3 @@
 app-server
 web-server
-/roles/common/templates/authorized_keys
 /collections/
