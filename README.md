@@ -27,6 +27,13 @@ example:
 ssh-rsa aabbcddccbbsssww= user@machine
 ```
 # Add known_hosts for every host in inventory
+
+## Add server's addresses in your /etc/hosts 
+```
+192.168.100.105  app-server.vm app-server
+192.168.100.104  web-server.vm web-server
+```
+## Then Run
 ```
 ansible-playbook ssh-known_hosts.yml
 ```
